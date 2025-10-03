@@ -10,6 +10,7 @@ const securityMiddleware = async (req, res, next) => {
       slidingWindow({
         mode: 'LIVE',
         interval: '1m',
+        max: 60,
         name: `${role}-rate-limit`,
       })
     );
