@@ -7,8 +7,13 @@ import connectToDatabase from './database/mongodb.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 import cors from 'cors';
 import swagger from './swagger.js';
+import logger from './config/logger.js';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
 const app = express();
+
+app.use(helmet());
 
 app.use(
   cors({
@@ -19,6 +24,11 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  morgan('combined', {
+    stream: { write: message => logger.info(message.trim()) },
+  })
+);
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/note', noteRouter);
@@ -37,6 +47,7 @@ app.use((err, req, res) => {
 });
 
 app.get('/', (req, res) => {
+  logger.info('Hello from Notes logger');
   res.send('Notes API in running!');
 });
 
