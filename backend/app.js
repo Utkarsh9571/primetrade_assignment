@@ -10,6 +10,7 @@ import swagger from './swagger.js';
 import logger from './config/logger.js';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import securityMiddleware from './middlewares/security.middleware.js';
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(securityMiddleware());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
