@@ -41,7 +41,7 @@ app.use(
 
 app.use(errorMiddleware);
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
