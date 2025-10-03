@@ -33,7 +33,6 @@
  *         description: User registered successfully
  */
 
-
 /**
  * @swagger
  * /api/v1/auth/sign-in:

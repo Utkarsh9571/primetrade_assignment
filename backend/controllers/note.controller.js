@@ -1,4 +1,4 @@
-import Note from "../models/note.model.js";
+import Note from '../models/note.model.js';
 
 export const createNote = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ export const createNote = async (req, res, next) => {
       data: [note],
     });
   } catch (error) {
-    console.log("An error occured in the createNote controller:");
+    console.log('An error occured in the createNote controller:');
     next(error);
   }
 };
@@ -39,7 +39,7 @@ export const updateNote = async (req, res, next) => {
     if (!updatedNote) {
       return res
         .status(404)
-        .json({ success: false, message: "Note not found" });
+        .json({ success: false, message: 'Note not found' });
     }
 
     res.status(200).json({ success: true, data: updatedNote });
@@ -53,12 +53,12 @@ export const deleteNote = async (req, res, next) => {
     const note = await Note.findByIdAndDelete(req.params.id);
 
     if (!note) {
-      const error = new Error("no notes found");
+      const error = new Error('no notes found');
       error.statusCode = 404;
       throw error;
     }
 
-    res.status(200).json({ success: true, message: "Note deleted" });
+    res.status(200).json({ success: true, message: 'Note deleted' });
   } catch (error) {
     next(error);
   }

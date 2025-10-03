@@ -1,21 +1,21 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const noteSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "Note Title is required"],
+      required: [true, 'Note Title is required'],
       trim: true,
       maxlength: 255,
     },
     content: {
       type: String,
-      required: [true, "Note context is required"],
+      required: [true, 'Note context is required'],
       trim: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
       index: true,
     },
@@ -31,6 +31,6 @@ const noteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Note = mongoose.model("notes", noteSchema);
+const Note = mongoose.model('notes', noteSchema);
 
 export default Note;
