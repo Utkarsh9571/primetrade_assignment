@@ -1,35 +1,35 @@
-import { useState } from "react";
-import { loginOrSignup } from "../utils/api";
+import { useState } from 'react';
+import { loginOrSignup } from '../utils/api';
 
 export default function AuthForm({ onAuth }) {
   const [isSignup, setIsSignup] = useState(false);
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
   });
 
-  const handleChange = (e) =>
+  const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const data = await loginOrSignup(form, isSignup);
     if (data.success && data.data.token) {
-      localStorage.setItem("token", data.data.token);
+      localStorage.setItem('token', data.data.token);
       onAuth(data.data);
     } else {
-      alert(data.message || "Authentication failed");
+      alert(data.message || 'Authentication failed');
     }
-    console.log("Auth response:", data);
+    console.log('Auth response:', data);
   };
 
   return (
     <div className="min-h-screen bg-warmWhite dark:bg-charcoal flex items-center justify-center px-4 transition-colors duration-300">
       <div className="w-full max-w-md bg-white dark:bg-slate p-6 rounded-xl shadow-soft hover:shadow-md transition">
         <h2 className="text-2xl font-bold text-mutedBlue dark:text-accent mb-6 text-center">
-          {isSignup ? "Sign Up" : "Login"}
+          {isSignup ? 'Sign Up' : 'Login'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {isSignup && (
@@ -65,16 +65,16 @@ export default function AuthForm({ onAuth }) {
             type="submit"
             className="w-full bg-mutedBlue dark:bg-accent text-white py-2 rounded-xl hover:scale-[1.02] transition-transform"
           >
-            {isSignup ? "Sign Up" : "Login"}
+            {isSignup ? 'Sign Up' : 'Login'}
           </button>
         </form>
         <p className="mt-6 text-sm text-center text-gray-600 dark:text-gray-400">
-          {isSignup ? "Already have an account?" : "Don't have an account?"}
+          {isSignup ? 'Already have an account?' : "Don't have an account?"}
           <button
             onClick={() => setIsSignup(!isSignup)}
             className="ml-2 text-mutedBlue dark:text-accent underline hover:opacity-80 transition"
           >
-            {isSignup ? "Login" : "Sign Up"}
+            {isSignup ? 'Login' : 'Sign Up'}
           </button>
         </p>
       </div>

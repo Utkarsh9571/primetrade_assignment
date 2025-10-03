@@ -1,21 +1,21 @@
-import { useState } from "react";
-import { deleteNote, updateNote } from "../utils/api";
+import { useState } from 'react';
+import { deleteNote, updateNote } from '../utils/api';
 
 export default function NoteList({ notes, token, onRefresh }) {
   const [editingId, setEditingId] = useState(null);
-  const [editForm, setEditForm] = useState({ title: "", content: "" });
+  const [editForm, setEditForm] = useState({ title: '', content: '' });
 
-  const handleDelete = async (id) => {
+  const handleDelete = async id => {
     await deleteNote(id, token);
     onRefresh();
   };
 
-  const startEdit = (note) => {
+  const startEdit = note => {
     setEditingId(note._id);
     setEditForm({ title: note.title, content: note.content });
   };
 
-  const handleUpdate = async (id) => {
+  const handleUpdate = async id => {
     await updateNote(id, editForm, token);
     setEditingId(null);
     onRefresh();
@@ -23,7 +23,7 @@ export default function NoteList({ notes, token, onRefresh }) {
 
   return (
     <div className="mt-6 space-y-6">
-      {notes.map((note) => (
+      {notes.map(note => (
         <div
           key={note._id}
           className="p-6 bg-white dark:bg-slate rounded-xl shadow-soft hover:shadow-md transition"
@@ -32,7 +32,7 @@ export default function NoteList({ notes, token, onRefresh }) {
             <>
               <input
                 value={editForm.title}
-                onChange={(e) =>
+                onChange={e =>
                   setEditForm({ ...editForm, title: e.target.value })
                 }
                 placeholder="Title"
@@ -40,7 +40,7 @@ export default function NoteList({ notes, token, onRefresh }) {
               />
               <textarea
                 value={editForm.content}
-                onChange={(e) =>
+                onChange={e =>
                   setEditForm({ ...editForm, content: e.target.value })
                 }
                 placeholder="Content"

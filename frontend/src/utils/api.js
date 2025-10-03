@@ -1,10 +1,10 @@
 const API = process.env.REACT_APP_API_BASE;
 
 export async function loginOrSignup(form, isSignup) {
-  const endpoint = isSignup ? "auth/sign-up" : "auth/sign-in";
+  const endpoint = isSignup ? 'auth/sign-up' : 'auth/sign-in';
   const res = await fetch(`${API}/${endpoint}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(form),
   });
   return res.json();
@@ -19,9 +19,9 @@ export async function fetchNotes(token) {
 
 export async function createNote(note, token) {
   const res = await fetch(`${API}/note`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(note),
@@ -31,7 +31,7 @@ export async function createNote(note, token) {
 
 export async function deleteNote(id, token) {
   const res = await fetch(`${API}/note/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` },
   });
   return res.json();
@@ -39,9 +39,9 @@ export async function deleteNote(id, token) {
 
 export async function updateNote(id, updatedFields, token) {
   const res = await fetch(`${API}/note/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(updatedFields),

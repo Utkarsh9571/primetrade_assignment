@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { fetchNotes } from "../utils/api";
-import NoteForm from "../components/NoteForm";
-import NoteList from "../components/NoteList";
-import useThemeToggle from "../hooks/useThemeToggle";
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { fetchNotes } from '../utils/api';
+import NoteForm from '../components/NoteForm';
+import NoteList from '../components/NoteList';
+import useThemeToggle from '../hooks/useThemeToggle';
 
 export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
@@ -40,7 +40,7 @@ export default function Dashboard() {
               onClick={toggleTheme}
               className="text-mutedBlue dark:text-accent underline hover:opacity-80 transition"
             >
-              {isDark ? "Light Mode" : "Dark Mode"}
+              {isDark ? 'Light Mode' : 'Dark Mode'}
             </button>
           </div>
         </div>

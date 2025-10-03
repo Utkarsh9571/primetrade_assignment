@@ -3,12 +3,12 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import { useContext } from "react";
-import { AuthProvider, AuthContext } from "./context/AuthContext";
-import AuthForm from "./components/AuthForm";
-import Dashboard from "./pages/Dashboard";
-import AdminDashboard from "./pages/AdminDashboard";
+} from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthProvider, AuthContext } from './context/AuthContext';
+import AuthForm from './components/AuthForm';
+import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 
 function AppRoutes() {
   const { user, login } = useContext(AuthContext);
@@ -20,7 +20,7 @@ function AppRoutes() {
       <Route
         path="/"
         element={
-          <Navigate to={user.role === "admin" ? "/admin" : "/dashboard"} />
+          <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} />
         }
       />
       <Route path="/dashboard" element={<Dashboard />} />

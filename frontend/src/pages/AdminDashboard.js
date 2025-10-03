@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import AdminPanel from "../components/AdminPanel";
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import AdminPanel from '../components/AdminPanel';
 import AdminUserManager from '../components/AdminUserManager';
-import useThemeToggle from "../hooks/useThemeToggle";
+import useThemeToggle from '../hooks/useThemeToggle';
 
 export default function AdminDashboard() {
   const { user, logout } = useContext(AuthContext);
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
               onClick={toggleTheme}
               className="text-mutedBlue dark:text-accent underline hover:opacity-80 transition"
             >
-              {isDark ? "Light Mode" : "Dark Mode"}
+              {isDark ? 'Light Mode' : 'Dark Mode'}
             </button>
           </div>
         </div>

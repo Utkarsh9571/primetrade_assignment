@@ -1,6 +1,6 @@
-import AdminUserManager from "./AdminUserManager";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import AdminUserManager from './AdminUserManager';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function AdminPanel({ token }) {
   const [notes, setNotes] = useState([]);
@@ -13,16 +13,16 @@ export default function AdminPanel({ token }) {
     if (data.success) setNotes(data.data);
   };
 
-  const deleteNote = async (id) => {
+  const deleteNote = async id => {
     try {
       await fetch(`${process.env.REACT_APP_API_BASE}/admin/note/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
-      toast.success("Note deleted");
+      toast.success('Note deleted');
       fetchNotes();
     } catch (err) {
-      toast.error("Failed to delete note");
+      toast.error('Failed to delete note');
     }
   };
 
@@ -40,7 +40,7 @@ export default function AdminPanel({ token }) {
             All Notes
           </h2>
           <ul className="space-y-4">
-            {notes.map((note) => (
+            {notes.map(note => (
               <li
                 key={note._id}
                 className="p-6 bg-white dark:bg-slate rounded-xl shadow-soft hover:shadow-md transition duration-300"
