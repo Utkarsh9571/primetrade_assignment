@@ -37,10 +37,6 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/note', noteRouter);
 app.use('/api/v1/admin', adminRouter);
 
-if (!req.path.startsWith('/api/v1/api-docs')) {
-  await securityMiddleware(req, res, next);
-}
-
 app.use(
   '/api/v1/api-docs',
   swagger.swaggerUi.serve,
