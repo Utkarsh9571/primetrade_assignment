@@ -4,6 +4,8 @@ import aj from '../config/arcjet.js';
 
 const securityMiddleware = async (req, res, next) => {
   try {
+    const role = req.user?.role || 'anonymous';
+
     const client = aj.withRule(
       slidingWindow({
         mode: 'LIVE',
