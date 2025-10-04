@@ -40,3 +40,4 @@ jobs:
         env:
           DB_URI: ${{ secrets.TEST_DB_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN: "1d"
