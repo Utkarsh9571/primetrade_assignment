@@ -1,16 +1,14 @@
 import express from 'express';
-import { PORT } from './config/env.js';
 import authRouter from './routes/auth.routes.js';
 import noteRouter from './routes/note.routes.js';
 import adminRouter from './routes/admin.routes.js';
-import connectToDatabase from './database/mongodb.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 import cors from 'cors';
 import swagger from './swagger.js';
 import logger from './config/logger.js';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import securityMiddleware from './middlewares/security.middleware.js';
+//import securityMiddleware from './middlewares/security.middleware.js';
 
 const app = express();
 
@@ -31,7 +29,7 @@ app.use(
   })
 );
 
-app.use(securityMiddleware);
+//app.use(securityMiddleware);
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/note', noteRouter);
@@ -52,12 +50,23 @@ app.use((err, req, res, next) => {
 
 app.get('/', (req, res) => {
   logger.info('Hello from Notes logger');
-  res.send('Notes API in running!');
+  res.send('Notes App in running!');
 });
 
-app.listen(PORT, async () => {
-  console.log(`Notes App API is running on http://localhost:${PORT}`);
-  await connectToDatabase();
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    Timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
+});
+
+app.get('/api', (req, res) => {
+  res.status(200).json({ message: 'Notes App is running' });
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
 export default app;
