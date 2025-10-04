@@ -39,3 +39,4 @@ jobs:
         run: npm run test
         env:
           DB_URI: ${{ secrets.TEST_DB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
