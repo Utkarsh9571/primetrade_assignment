@@ -24,16 +24,19 @@ export default [
       'linebreak-style': ['error', 'unix'],
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 'off',
       'prefer-const': 'error',
       'no-var': 'error',
       'object-shorthand': 'error',
       'prefer-arrow-callback': 'error',
+      'no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
     },
   },
   {
-    files: ['tests/**/*.js'],
+    files: ['test/**/*.js'],
     languageOptions: {
       globals: {
         describe: 'readonly',

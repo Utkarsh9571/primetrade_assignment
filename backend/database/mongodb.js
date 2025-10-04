@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { DB_URI, NODE_ENV } from '../config/env.js';
+import logger from '../config/logger.js';
 
 if (!DB_URI) {
   throw new Error(
