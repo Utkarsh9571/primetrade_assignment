@@ -1,4 +1,5 @@
 import Note from '../models/note.model.js';
+import logger from '../config/logger.js';
 
 export const createNote = async (req, res, next) => {
   try {
@@ -12,6 +13,7 @@ export const createNote = async (req, res, next) => {
       data: [note],
     });
   } catch (error) {
+    logger.error('Failed to create a note', error);
     console.log('An error occured in the createNote controller:');
     next(error);
   }
@@ -22,6 +24,7 @@ export const getNotes = async (req, res, next) => {
     const note = await Note.find({ user: req.user.id });
     res.status(200).json({ success: true, data: [note] });
   } catch (error) {
+    logger.error('Failed to get notes', error);
     next(error);
   }
 };
@@ -44,6 +47,7 @@ export const updateNote = async (req, res, next) => {
 
     res.status(200).json({ success: true, data: updatedNote });
   } catch (error) {
+    logger.error('Failed to update a note', error);
     next(error);
   }
 };
@@ -60,6 +64,7 @@ export const deleteNote = async (req, res, next) => {
 
     res.status(200).json({ success: true, message: 'Note deleted' });
   } catch (error) {
+    logger.error('Failed to delete a note', error);
     next(error);
   }
 };

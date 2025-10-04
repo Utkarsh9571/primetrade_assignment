@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import User from '../models/user.model.js';
 import { JWT_SECRET, JWT_EXPIRES_IN } from '../config/env.js';
+import logger from '../config/logger.js';
 
 dotenv.config();
 
@@ -50,13 +51,14 @@ export const signUp = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      message: 'User created sucessfully',
+      message: 'User created successfully',
       data: {
         token,
         user: newUser[0],
       },
     });
   } catch (error) {
+    logger.error('Failed to create a user', error);
     await session.abortTransaction();
     session.endSession();
     next(error);
@@ -87,15 +89,17 @@ export const signIn = async (req, res, next) => {
       expiresIn: JWT_EXPIRES_IN,
     });
 
+    const { password: _, ...safeUser } = user.toObject();
     res.status(200).json({
       success: true,
-      message: 'User signed in sucessfully',
+      message: 'User signed in successfully',
       data: {
         token,
-        user,
+        user: safeUser,
       },
     });
   } catch (error) {
+    logger.error('Failed to login', error);
     next(error);
   }
 };

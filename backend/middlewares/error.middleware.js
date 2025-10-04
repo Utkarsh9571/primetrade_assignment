@@ -31,6 +31,7 @@ const errorMiddleware = (err, req, res, next) => {
       .status(error.statusCode || 500)
       .json({ success: false, error: error.message || 'Server Error' });
   } catch (error) {
+    logger.error(error);
     next(error);
   }
 };
