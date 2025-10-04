@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "cross-env NODE_ENV=test DOTENV_CONFIG_PATH=.env.test NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "test": "cross-env NODE_ENV=test DOTENV_CONFIG_PATH=.env.test.local NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
     "@arcjet/inspect": "^1.0.0-beta.12",
