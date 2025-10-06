@@ -29,6 +29,12 @@ jobs:
         run: |
           aws eks update-kubeconfig --name primetrade-cluster --region us-east-1
 
+      - name: Test cluster access
+        run: kubectl get nodes
+
+      - name: Debug kubeconfig context
+        run: kubectl config current-context
+
       - name: Inject backend secrets
         run: |
           kubectl create secret generic backend-secret \
