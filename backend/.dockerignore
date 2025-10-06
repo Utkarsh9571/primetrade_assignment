@@ -1,8 +1,18 @@
-node_modules
-.env
-npm-debug.log
-Dockerfile
-docker-compose.yml
-README.md
-__tests__/
+# Dependencies and build artifacts
+node_modules/
 coverage/
+__tests__/
+
+# Logs and debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Secrets
+.env
+.env.*.local
+
+# Editor/OS clutter
+.DS_Store
+.vscode/
+.idea/

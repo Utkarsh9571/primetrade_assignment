@@ -60,3 +60,13 @@ typings/
 
 # next.js build output
 .next
+
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
