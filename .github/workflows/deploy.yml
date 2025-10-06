@@ -34,7 +34,7 @@ jobs:
           kubectl create secret generic backend-secret \
             --from-literal=TEST_DB_URI="${{ secrets.TEST_DB_URI }}" \
             --from-literal=JWT_SECRET="${{ secrets.JWT_SECRET }}" \
-            --dry-run=client -o yaml | kubectl apply -f -
+            --dry-run=client -o yaml | kubectl apply --validate=false -f -
 
       - name: Deploy Backend
         run: kubectl apply -f k8s/backend/deployment.yaml
