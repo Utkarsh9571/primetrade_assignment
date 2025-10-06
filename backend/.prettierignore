@@ -1,6 +1,9 @@
 node_modules/
 coverage/
 logs/
-mongoose/
 *.log
-package-lock.json
+build/
+dist/
+public/
+.env
+.env.*.local

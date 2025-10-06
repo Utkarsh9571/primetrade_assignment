@@ -1,4 +1,8 @@
+if (!process.env.REACT_APP_API_BASE) {
+  throw new Error('REACT_APP_API_BASE is not defined');
+}
 const API = process.env.REACT_APP_API_BASE;
+console.log('API base:', API);
 
 export async function loginOrSignup(form, isSignup) {
   const endpoint = isSignup ? 'auth/sign-up' : 'auth/sign-in';
@@ -48,3 +52,4 @@ export async function updateNote(id, updatedFields, token) {
   });
   return res.json();
 }
+console.log('API base:', API);

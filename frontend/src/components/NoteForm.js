@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createNote } from '../utils/api';
+import { createNote } from '../utils/api.js';
 
 export default function NoteForm({ token, onNoteCreated }) {
   const [title, setTitle] = useState('');

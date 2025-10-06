@@ -1,8 +1,7 @@
 import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import AdminPanel from '../components/AdminPanel';
-import AdminUserManager from '../components/AdminUserManager';
-import useThemeToggle from '../hooks/useThemeToggle';
+import { AuthContext } from '../context/AuthContext.js';
+import AdminPanel from '../components/AdminPanel.js';
+import useThemeToggle from '../hooks/useThemeToggle.js';
 
 export default function AdminDashboard() {
   const { user, logout } = useContext(AuthContext);

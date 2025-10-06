@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { deleteNote, updateNote } from '../utils/api';
+import { deleteNote, updateNote } from '../utils/api.js';
 
 export default function NoteList({ notes, token, onRefresh }) {
   const [editingId, setEditingId] = useState(null);

@@ -5,10 +5,10 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthProvider, AuthContext } from './context/AuthContext';
-import AuthForm from './components/AuthForm';
-import Dashboard from './pages/Dashboard';
-import AdminDashboard from './pages/AdminDashboard';
+import { AuthProvider, AuthContext } from './context/AuthContext.js';
+import AuthForm from './components/AuthForm.js';
+import Dashboard from './pages/Dashboard.js';
+import AdminDashboard from './pages/AdminDashboard.js';
 
 function AppRoutes() {
   const { user, login } = useContext(AuthContext);

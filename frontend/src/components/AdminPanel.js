@@ -1,4 +1,4 @@
-import AdminUserManager from './AdminUserManager';
+import AdminUserManager from './AdminUserManager.js';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 

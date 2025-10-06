@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { fetchNotes } from '../utils/api';
-import NoteForm from '../components/NoteForm';
-import NoteList from '../components/NoteList';
-import useThemeToggle from '../hooks/useThemeToggle';
+import { AuthContext } from '../context/AuthContext.js';
+import { fetchNotes } from '../utils/api.js';
+import NoteForm from '../components/NoteForm.js';
+import NoteList from '../components/NoteList.js';
+import useThemeToggle from '../hooks/useThemeToggle.js';
 
 export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
