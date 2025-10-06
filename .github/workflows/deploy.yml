@@ -1,0 +1,58 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "latest"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name primetrade-cluster --region us-east-1
+
+      - name: Inject backend secrets
+        run: |
+          kubectl create secret generic backend-secret \
+            --from-literal=TEST_DB_URI="${{ secrets.TEST_DB_URI }}" \
+            --from-literal=JWT_SECRET="${{ secrets.JWT_SECRET }}" \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy Backend
+        run: kubectl apply -f k8s/backend/deployment.yaml
+
+      - name: Deploy Frontend
+        run: kubectl apply -f k8s/frontend/deployment.yaml
+
+      - name: Apply Ingress
+        run: kubectl apply -f k8s/notes-ingress.yaml
+
+      - name: Check pod status
+        run: kubectl get pods -l app=backend -o wide
+
+      - name: Verify backend rollout
+        run: kubectl rollout status deployment/backend
+
+      - name: Verify frontend rollout
+        run: kubectl rollout status deployment/frontend
+
+      - name: Check ingress and TLS
+        run: kubectl describe ingress notes-ingress
