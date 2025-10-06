@@ -2,16 +2,21 @@ FROM node:18 AS build
 
 WORKDIR /app
 
-COPY package.json ./
-
-COPY package-lock.json ./   
+# Copy and install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
+# Copy everything else including .env
 COPY . .
 
+# Inject env variable explicitly
+ENV REACT_APP_API_BASE=https://notes.us-backend.space/api/v1
+
+# Build the React app
 RUN npm run build
 
 
+# Final image
 FROM node:18
 
 WORKDIR /app
